@@ -1,0 +1,29 @@
+.logo{
+    width: 200px;
+    margin:auto;
+}
+.login-area{
+    width: 570px;
+    height: 457px;
+    border: 1px solid black ;
+    margin:auto;
+    margin-top: 50px;
+}
+.google-login{
+    border: 1px solid black;
+    border-radius: 50vh;
+    padding: 13px 0;
+    width: 500px;
+    margin: auto;
+}
+i.fab.fa-google {
+    font-size: 42px;
+}
+.create-account{
+    text-align: center;
+    padding-top: 20px;
+}
+.login-style{
+    text-decoration: none !important;
+    color: black;
+}
