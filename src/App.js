@@ -12,47 +12,54 @@ import Login from './Compunents/Shared/Login/Login';
 import Hire from './Compunents/Home/Hire/Hire';
 import Order from './Compunents/Order/Order/Order';
 import { createContext, useState } from 'react';
+import Admin from './Compunents/Admin/Admin/Admin';
 
 export const OrderContext = createContext()
 export const customerCatagoryContext = createContext()
+export const UserContext = createContext();
 
 function App() {
-
+  const [loggedInUser, setLoggedInUser] = useState({});
   const [order, setorder] = useState(null)
   const [customerCatagory, setCustomerCatagory] = useState('order')
   return (
-    <OrderContext.Provider value={[order, setorder]}>
-      <customerCatagoryContext.Provider value={[customerCatagory, setCustomerCatagory]}>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home></Home>
-            </Route>
-            <Route path="/home">
-              <Home></Home>
-            </Route>
-            <Route path="/portfolio">
-              <Portfolio></Portfolio>
-            </Route>
-            <Route path="/team">
-              <Team></Team>
-            </Route>
-            <Route path="/contact">
-              <Contact></Contact>
-            </Route>
-            <Route path="/login">
-              <Login></Login>
-            </Route>
-            <Route path="/hire">
-              <Hire></Hire>
-            </Route>
-            <Route path="/order">
-              <Order></Order>
-            </Route>
-          </Switch>
-        </Router>
-      </customerCatagoryContext.Provider>
-    </OrderContext.Provider>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <OrderContext.Provider value={[order, setorder]}>
+        <customerCatagoryContext.Provider value={[customerCatagory, setCustomerCatagory]}>
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <Home></Home>
+              </Route>
+              <Route path="/home">
+                <Home></Home>
+              </Route>
+              <Route path="/portfolio">
+                <Portfolio></Portfolio>
+              </Route>
+              <Route path="/team">
+                <Team></Team>
+              </Route>
+              <Route path="/contact">
+                <Contact></Contact>
+              </Route>
+              <Route path="/login">
+                <Login></Login>
+              </Route>
+              <Route path="/hire">
+                <Hire></Hire>
+              </Route>
+              <Route path="/order">
+                <Order></Order>
+              </Route>
+              <Route path="/admin">
+                <Admin></Admin>
+              </Route>
+            </Switch>
+          </Router>
+        </customerCatagoryContext.Provider>
+      </OrderContext.Provider>
+    </UserContext.Provider>
   );
 }
 

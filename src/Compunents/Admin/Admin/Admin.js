@@ -1,9 +1,12 @@
 import React from 'react';
+import AdminHeader from '../AdminHeader/AdminHeader';
+import AdminMain from '../AdminMain/AdminMain';
 
 const Admin = () => {
     return (
-        <div>
-            <h1>This is Admin</h1>
+        <div className='container'>
+            <AdminHeader></AdminHeader>
+            <AdminMain></AdminMain>
         </div>
     );
 };
