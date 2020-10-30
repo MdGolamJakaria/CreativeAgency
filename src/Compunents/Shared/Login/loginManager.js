@@ -3,7 +3,7 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 
 export const initializeLoginFramework = () => {
-    if(firebase.apps.length === 0) {
+    if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
 }
@@ -12,46 +12,47 @@ export const initializeLoginFramework = () => {
 export const handleGoogleSignIn = () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithPopup(googleProvider)
-    .then(res => {
-      const {displayName, photoURL, email} = res.user;
-      const signedInUser = {
-        isSignedIn: true,
-        name: displayName,
-        email: email,
-        photo: photoURL,
-        success: true
-      };
-      setUserToken();
-      return signedInUser;
-    })
-    .catch(err => {
-      console.log(err);
-      console.log(err.message);
-    })
-  }
+        .then(res => {
+            const { displayName, photoURL, email } = res.user;
+            const signedInUser = {
+                isSignedIn: true,
+                name: displayName,
+                email: email,
+                photo: photoURL,
+                success: true
+            };
+            setUserToken();
+            return signedInUser;
+        })
+        .catch(err => {
+            console.log(err);
+            console.log(err.message);
+        })
+}
 
-  const setUserToken = () => {
-    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-      sessionStorage.setItem('token', idToken);
-    }).catch(function(error) {
-      // Handle error
+const setUserToken = () => {
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+        sessionStorage.setItem('token', idToken);
+    }).catch(function (error) {
+        // Handle error
     });
-  }
+}
 
 
-  export const handleSignOut = () => {
+export const handleSignOut = () => {
     return firebase.auth().signOut()
-    .then(res => {
-      const signedOutUser = {
-        isSignedIn: false,
-        name: '',
-        email: '',
-        photo: '',
-        error: '',
-        success: false
-      }
-      return signedOutUser;
-    }).catch(err => {
-      // An error happened.
-    });
-  }
+        .then(res => {
+            const signedOutUser = {
+                isSignedIn: false,
+                name: '',
+                email: '',
+                photo: '',
+                error: '',
+                success: false
+            }
+            sessionStorage.clear()
+            return signedOutUser;
+        }).catch(err => {
+            // An error happened.
+        });
+}

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../../App';
 import logo from '../../../creative-agency-main/images/logos/logo.png'
 const Header = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
             <Link className="navbar-brand" to="/"><img className="w-50" src={logo} alt="" /></Link>
@@ -24,7 +26,9 @@ const Header = () => {
                         <Link className="nav-link" to="/contact">Contact Us</Link>
                     </li>
                     <li className="nav-item pl-3">
-                        <Link className="nav-link btn btn-dark text-white px-5" to="/login">Login</Link>
+                        {
+                            loggedInUser.isSignedIn ? <Link className="nav-link btn btn-dark text-white px-5" to="/login">Logout</Link> : <Link className="nav-link btn btn-dark text-white px-5" to="/login">Login</Link>
+                        }
                     </li>
                 </ul>
 

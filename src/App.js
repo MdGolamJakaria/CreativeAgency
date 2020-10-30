@@ -13,6 +13,7 @@ import Hire from './Compunents/Home/Hire/Hire';
 import Order from './Compunents/Order/Order/Order';
 import { createContext, useState } from 'react';
 import Admin from './Compunents/Admin/Admin/Admin';
+import PrivateRoute from './Compunents/Shared/PrivateRoute/PrivateRoute';
 
 export const OrderContext = createContext()
 export const customerCatagoryContext = createContext()
@@ -49,12 +50,12 @@ function App() {
               <Route path="/hire">
                 <Hire></Hire>
               </Route>
-              <Route path="/order">
+              <PrivateRoute path="/order">
                 <Order></Order>
-              </Route>
-              <Route path="/admin">
+              </PrivateRoute>
+              <PrivateRoute path="/admin">
                 <Admin></Admin>
-              </Route>
+              </PrivateRoute>
             </Switch>
           </Router>
         </customerCatagoryContext.Provider>
