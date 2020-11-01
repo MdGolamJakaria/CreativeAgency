@@ -4,8 +4,21 @@ import { Input as AntdInput } from "antd";
 
 const MakeAdmin = () => {
     const { control, handleSubmit, errors } = useForm();
+
     const onSubmit = data => {
-        console.log(data)
+        fetch('http://localhost:5000/addAdmin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    alert('Assign Admin Successfully')
+                }
+            })
     };
     return (
         <div className='row'>

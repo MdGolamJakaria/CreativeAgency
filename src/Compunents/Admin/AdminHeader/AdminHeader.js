@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../../App';
 import logo from '../../../creative-agency-main/images/logos/logo.png'
 const AdminHeader = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     return (
         <div className='container my-3 '>
             <div className="row">
@@ -10,7 +12,7 @@ const AdminHeader = () => {
                 </div>
                 <div className="col-md-9 d-flex  justify-content-between">
                     <h3>Service List</h3>
-                    <h4>User Name</h4>
+                    <h4>{loggedInUser.name}</h4>
                 </div>
             </div>
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import logo from '../../../creative-agency-main/images/logos/logo.png'
 const Header = () => {
+    const token = sessionStorage.getItem('token');
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
@@ -27,7 +28,7 @@ const Header = () => {
                     </li>
                     <li className="nav-item pl-3">
                         {
-                            loggedInUser.isSignedIn ? <Link className="nav-link btn btn-dark text-white px-5" to="/login">Logout</Link> : <Link className="nav-link btn btn-dark text-white px-5" to="/login">Login</Link>
+                            loggedInUser.isSignedIn || token ? <Link className="nav-link btn btn-dark text-white px-5" to="/login">Logout</Link> : <Link className="nav-link btn btn-dark text-white px-5" to="/login">Login</Link>
                         }
                     </li>
                 </ul>

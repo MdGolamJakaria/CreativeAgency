@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm, Controller } from "react-hook-form";
 import { Input as AntdInput } from "antd";
+import { UserContext } from '../../../App';
+import { Redirect } from 'react-router-dom';
 
 const Review = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const { control, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        console.log(data)
+        if (loggedInUser!=='') {
+            fetch('http://localhost:5000/addReview', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ loggedInUser, data })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data) {
+                        alert('Review Placed Successfully')
+                    }
+                })
+        } else {
+            <Redirect to='/login' ></Redirect>
+        }
     };
     return (
         <div className='row'>

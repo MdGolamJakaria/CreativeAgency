@@ -5,6 +5,19 @@ import { Input as AntdInput } from "antd";
 const AddService = () => {
     const { control, handleSubmit, errors } = useForm();
     const onSubmit = data => {
+        fetch('http://localhost:5000/addService', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    alert('Services Added Successfully')
+                }
+            })
         console.log(data)
     };
     return (

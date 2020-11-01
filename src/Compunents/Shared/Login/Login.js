@@ -6,6 +6,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import { handleGoogleSignIn, handleSignOut, initializeLoginFramework } from './loginManager';
 const Login = () => {
+    const token = sessionStorage.getItem('token');
     const [user, setUser] = useState({
         isSignedIn: false,
         name: '',
@@ -50,7 +51,7 @@ const Login = () => {
             </div>
             <div className="login-area d-flex  justify-content-center  align-items-center">
                 {
-                    loggedInUser.isSignedIn ?
+                    loggedInUser.isSignedIn || token ?
                         <Link to='#' onClick={signOut} className='login-style'>
                             <div className="row google-login">
                                 <div className="d-flex text-center m-auto ">

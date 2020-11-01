@@ -48,6 +48,7 @@ const Services = () => {
 
     const clickHandler = (service) => {
         setorder(service);
+        
     }
     return (
         <div className='container service-section'>

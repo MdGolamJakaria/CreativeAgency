@@ -53,9 +53,9 @@ function App() {
               <PrivateRoute path="/order">
                 <Order></Order>
               </PrivateRoute>
-              <PrivateRoute path="/admin">
+              <Route path="/admin">
                 <Admin></Admin>
-              </PrivateRoute>
+              </Route>
             </Switch>
           </Router>
         </customerCatagoryContext.Provider>

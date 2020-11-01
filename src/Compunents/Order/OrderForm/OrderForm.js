@@ -2,14 +2,31 @@ import React, { useContext } from 'react';
 import { useForm, Controller } from "react-hook-form";
 import { Input as AntdInput } from "antd";
 import './OrderForm.css'
-import { OrderContext } from '../../../App';
+import { OrderContext, UserContext } from '../../../App';
 
 const OrderForm = () => {
     const [order, setorder] = useContext(OrderContext)
-    console.log(order.service.service)
+
+
     const { control, handleSubmit, errors } = useForm();
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+
     const onSubmit = data => {
-        console.log(data)
+        fetch('http://localhost:5000/addOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ loggedInUser,data })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    alert('Order Placed Successfully')
+                }
+            })
+        console.log(loggedInUser, data)
     };
     return (
         <div className='row'>
